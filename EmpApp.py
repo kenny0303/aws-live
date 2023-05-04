@@ -266,7 +266,7 @@ def AddAttendance():
 
     cursor = db_conn.cursor()
 
-    cursor.execute(insert_sql, (emp_id, att_id, check_in, check_out,total_hours,status,overtime))
+    cursor.execute(insert_sql, (emp_id, emp_id, check_in, check_out,total_hours,status,overtime))
     db_conn.commit()
 
     cursor.close()
@@ -406,7 +406,7 @@ def EditLeave(lv_id):
     lv_reason = request.form['lv_reason']
     lv_status = request.form['lv_status']
 
-    update_sql = "UPDATE Leaves SET leave_date=%s, leave_duration=%s, leave_reason=%s, leave_status=%s WHERE leave_id=%s"
+    update_sql = "UPDATE Leaves SET lv_date=%s, lv_duration=%s, lv_reason=%s, lv_status=%s WHERE lv_id=%s"
     cursor = db_conn.cursor()
 
     cursor.execute(update_sql, (lv_date, lv_duration, lv_reason, lv_status, lv_id))
