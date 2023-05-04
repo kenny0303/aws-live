@@ -279,7 +279,7 @@ def AddAttendance():
 
 #update Attendance
 @app.route("/attendance/<string:attd_id>", methods=['POST'])
-def EditAttendance(id):
+def EditAttendance(attd_id):
     check_in = request.form['edit_check_in']
     check_out = request.form['edit_check_out']
   
