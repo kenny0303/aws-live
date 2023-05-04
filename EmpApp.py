@@ -266,7 +266,7 @@ def AddAttendance():
 
     cursor = db_conn.cursor()
 
-    cursor.execute(insert_sql, (emp_id, emp_id, check_in, check_out,total_hours,status,overtime))
+    cursor.execute(insert_sql, (emp_id, att_id, check_in, check_out,total_hours,status,overtime))
     db_conn.commit()
 
     cursor.close()
