@@ -278,7 +278,7 @@ def AddAttendance():
     return redirect('/attendance')
 
 #update Attendance
-@app.route("/attendance/<string:id>", methods=['POST'])
+@app.route("/attendance/<string:attd_id>", methods=['POST'])
 def EditAttendance(id):
     check_in = request.form['edit_check_in']
     check_out = request.form['edit_check_out']
@@ -308,7 +308,7 @@ def EditAttendance(id):
         status = "valid"
 
 
-    update_sql = "UPDATE Attendance SET check_in=%s, check_out=%s, total_work_time=%s,status=%s,overtime=%s WHERE attd_id=%s"
+    update_sql = "UPDATE Attendance SET check_in=%s, check_out=%s, total_hours=%s,status=%s,overtime=%s WHERE attd_id=%s"
     cursor = db_conn.cursor()
 
     cursor.execute(update_sql, (check_in, check_out,total_hours, status,overtime, attd_id))
