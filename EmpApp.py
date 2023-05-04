@@ -364,7 +364,7 @@ def EditPayroll(pr_id):
 def payPayroll(pr_id): 
     today = datetime.now()  
     dt_string = today.strftime("%Y-%m-%d %H:%M:%S")
-    update_sql = "UPDATE Payroll SET payroll_status=%s, payout_date=%s WHERE pr_id=%s"
+    update_sql = "UPDATE Payroll SET py_status=%s, payout_date=%s WHERE pr_id=%s"
     cursor = db_conn.cursor()
     print(dt_string)
     cursor.execute(update_sql, ("Paid", dt_string, pr_id))
