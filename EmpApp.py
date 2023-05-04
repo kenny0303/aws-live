@@ -238,6 +238,9 @@ def AddAttendance():
     check_in = request.form['check_in']
     check_out = request.form['check_out']
 
+    ran_id = random.randint(1000, 9999)
+    attd_id = "AT" + str(ran_id)
+
     #calculate total work time and check valid
     check_in_data = check_in.split(":")
     check_out_data = check_out.split(":")
@@ -266,7 +269,7 @@ def AddAttendance():
 
     cursor = db_conn.cursor()
 
-    cursor.execute(insert_sql, (emp_id, emp_id, check_in, check_out,total_hours,status,overtime))
+    cursor.execute(insert_sql, (attd_id, emp_id, check_in, check_out,total_hours,status,overtime))
     db_conn.commit()
 
     cursor.close()
@@ -305,10 +308,10 @@ def EditAttendance(id):
         status = "valid"
 
 
-    update_sql = "UPDATE Attendance SET check_in=%s, check_out=%s, total_work_time=%s,status=%s,overtime=%s WHERE emp_id=%s"
+    update_sql = "UPDATE Attendance SET check_in=%s, check_out=%s, total_work_time=%s,status=%s,overtime=%s WHERE attd_id=%s"
     cursor = db_conn.cursor()
 
-    cursor.execute(update_sql, (check_in, check_out,total_hours, status,overtime, emp_id))
+    cursor.execute(update_sql, (check_in, check_out,total_hours, status,overtime, attd_id))
     db_conn.commit()
 
     cursor.close()
