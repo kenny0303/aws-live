@@ -305,10 +305,10 @@ def EditAttendance(id):
         status = "valid"
 
 
-    update_sql = "UPDATE Attendance SET check_in=%s, check_out=%s, total_work_time=%s,status=%s,overtime=%s WHERE attd_id=%s"
+    update_sql = "UPDATE Attendance SET check_in=%s, check_out=%s, total_work_time=%s,status=%s,overtime=%s WHERE emp_id=%s"
     cursor = db_conn.cursor()
 
-    cursor.execute(update_sql, (check_in, check_out,total_hours, status,overtime, attd_id))
+    cursor.execute(update_sql, (check_in, check_out,total_hours, status,overtime, emp_id))
     db_conn.commit()
 
     cursor.close()
