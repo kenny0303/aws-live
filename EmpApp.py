@@ -266,7 +266,7 @@ def AddAttendance():
 
     cursor = db_conn.cursor()
 
-    cursor.execute(insert_sql, (emp_id, emp_id, check_in, check_out,total_hours,status,overtime))
+    cursor.execute(insert_sql, (attd_id, emp_id, check_in, check_out,total_hours,status,overtime))
     db_conn.commit()
 
     cursor.close()
@@ -308,7 +308,7 @@ def EditAttendance(id):
     update_sql = "UPDATE Attendance SET check_in=%s, check_out=%s, total_work_time=%s,status=%s,overtime=%s WHERE attd_id=%s"
     cursor = db_conn.cursor()
 
-    cursor.execute(update_sql, (check_in, check_out,total_hours, status,overtime, id))
+    cursor.execute(update_sql, (check_in, check_out,total_hours, status,overtime, attd_id))
     db_conn.commit()
 
     cursor.close()
@@ -348,7 +348,7 @@ def EditPayroll(pr_id):
     if float(py_amt) < 0:
         return "please enter correct payroll amount"
 
-    update_sql = "UPDATE Payroll SET payroll_amount=%s WHERE payroll_id=%s"
+    update_sql = "UPDATE Payroll SET py_amt=%s WHERE pr_id=%s"
     cursor = db_conn.cursor()
 
     cursor.execute(update_sql, (py_amt, pr_id))
@@ -364,7 +364,7 @@ def EditPayroll(pr_id):
 def payPayroll(pr_id): 
     today = datetime.now()  
     dt_string = today.strftime("%Y-%m-%d %H:%M:%S")
-    update_sql = "UPDATE Payroll SET payroll_status=%s, payout_date=%s WHERE payroll_id=%s"
+    update_sql = "UPDATE Payroll SET payroll_status=%s, payout_date=%s WHERE pr_id=%s"
     cursor = db_conn.cursor()
     print(dt_string)
     cursor.execute(update_sql, ("Paid", dt_string, pr_id))
